@@ -158,7 +158,9 @@ if [ -d usr/lib64 ]; then
     mkdir -p lib64
     find usr/lib64 -type f | while read -r f; do
         filename=$(basename "$f")
-        [ ! -e "lib64/$filename" ] && ln -s "../$f" "lib64/$filename"
+        if [ ! -e "lib64/$filename" ]; then
+            ln -s "../$f" "lib64/$filename"
+        fi
     done
 fi
 
@@ -166,14 +168,18 @@ if [ -d usr/lib ]; then
     mkdir -p lib
     find usr/lib -type f | while read -r f; do
         filename=$(basename "$f")
-        [ ! -e "lib/$filename" ] && ln -s "../$f" "lib/$filename"
+        if [ ! -e "lib/$filename" ]; then
+            ln -s "../$f" "lib/$filename"
+        fi
     done
 fi
 
 echo "Creating binary wrappers..." >&2
 for tool in gcc g++ cpp ar ld ld.bfd objcopy strip objdump as nm gcov; do
     tool_path="usr/bin/$tool"
-    [ ! -f "$tool_path" ] && continue
+    if [ ! -f "$tool_path" ]; then
+        continue
+    fi
 
     cat > "${tool_path}_wrapper" <<'WRAPPER_EOF'
 #!/bin/sh
