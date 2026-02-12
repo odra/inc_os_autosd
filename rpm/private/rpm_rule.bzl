@@ -94,7 +94,7 @@ BuildArch: {arch}
 # Install files from extracted tarball to buildroot
 rm -rf %{{buildroot}}
 mkdir -p %{{buildroot}}
-cp -a * %{{buildroot}}/
+cp -r -a * %{{buildroot}}/
 
 %files
 %defattr(644,-,-,755)
@@ -243,9 +243,9 @@ def _generate_file_copy_scripts(ctx):
 if [ -L "{source_path}" ]; then
     REAL_FILE=$(readlink -f "{source_path}")
     echo "Dereferencing symlink: $REAL_FILE"
-    cp "$REAL_FILE" "$TEMP_STAGE{target_dir}/{basename}"
+    cp -r "$REAL_FILE" "$TEMP_STAGE{target_dir}/{basename}"
 else
-    cp "{source_path}" "$TEMP_STAGE{target_dir}/{basename}"
+    cp -r "{source_path}" "$TEMP_STAGE{target_dir}/{basename}"
 fi""".format(
                 file_type = file_type,
                 source_path = file.path,
