@@ -39,7 +39,7 @@ echo "SHA256: $(cat $SHA256_OUTPUT)"
 
 echo "Extracting to buildroot..."
 mkdir -p "$BUILDROOT"
-cp -r * "$BUILDROOT/"
+cp -aL * "$BUILDROOT/"
 
 echo "Cleaning up temporary staging directory"
 rm -rf "$TEMP_STAGE"
