@@ -97,6 +97,7 @@ PACKAGES=(
     "mpfr"
     "jansson"
     "libatomic"
+    "libtsan"
 )
 
 USER_AGENT="Multi-GCC-Toolchain/1.0"
