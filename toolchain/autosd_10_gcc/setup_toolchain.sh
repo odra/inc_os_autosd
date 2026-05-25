@@ -96,7 +96,7 @@ PACKAGES=(
     "gmp"
     "mpfr"
     "jansson"
-    "libatomic.a"
+    "libatomic"
 )
 
 USER_AGENT="Multi-GCC-Toolchain/1.0"
