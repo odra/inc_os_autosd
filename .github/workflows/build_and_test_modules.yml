@@ -13,7 +13,7 @@ jobs:
         matrix:
           include:
             - config: autosd-x86_64
-              target: @score_baselibs//score/...
+              target: "@score_baselibs//score/..."
     name: ${{ matrix.module_name }} / ${{ matrix.config }}
     steps:
       - name: Clean disk space
